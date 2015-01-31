@@ -17,6 +17,8 @@ uint32_t calculateNumberOfDigitsSlow(uint64_t v) {
 	return result;
 
 }
+
+// Calculate a number of digits in an integer; faster variant.
 uint32_t calculateNumberOfDigitsFast(uint64_t v){
 	uint32_t result = 1;
 	for (;;) {
@@ -29,7 +31,7 @@ uint32_t calculateNumberOfDigitsFast(uint64_t v){
 		result += 4;
 	}
 }
-// Two digit cuts
+// Calculate a number of digits in an integer; fastest variant.
 uint32_t calculateNumberOfDigitsBinary(uint64_t v) {
 	if (v < 10) return 1;
 	if (v < 100) return 2;
@@ -51,7 +53,7 @@ uint32_t calculateNumberOfDigitsBinary(uint64_t v) {
 
 }
 
-// Integer to String
+// Convert an integer to a string; slow version. Too many array writes.
 uint32_t convertu64ToAsciiSlow(uint64_t v, char *dst) {
 	// Write backwards.
 	auto start = dst;
@@ -67,6 +69,9 @@ uint32_t convertu64ToAsciiSlow(uint64_t v, char *dst) {
 	return result;
 
 }
+
+
+// Convert an integer to a string; faster version. More computation, less array writes.
 uint32_t convertu64ToAsciiFast(uint64_t v, char *const buffer){
 	auto const result = calculateNumberOfDigitsFast(v);
 	uint32_t pos = result - 1;
@@ -79,7 +84,8 @@ uint32_t convertu64ToAsciiFast(uint64_t v, char *const buffer){
 	*buffer = static_cast<uint32_t>(v) + '0';
 		return result;
 }
-// Two digit cuts
+
+// Convert an integer to a string; fastest version.
 uint32_t convertu64ToAsciiFastest(uint64_t v, char *dst) {
 	static const char digits[201] =
 		"0001020304050607080910111213141516171819"
@@ -108,7 +114,6 @@ uint32_t convertu64ToAsciiFastest(uint64_t v, char *dst) {
 	return length;
 
 }
-
 
 
 int _tmain(int argc, _TCHAR* argv[])
