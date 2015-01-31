@@ -113,6 +113,12 @@ uint32_t convertu64ToAsciiFastest(uint64_t v, char *dst) {
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	uint32_t v = 54212545621;
+	uint32_t s = calculateNumberOfDigitsSlow(v);
+	uint32_t f = calculateNumberOfDigitsFast(v);
+	uint32_t b = calculateNumberOfDigitsBinary(v);
+
+
 	return 0;
 }
 
